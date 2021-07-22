@@ -1,0 +1,26 @@
+.dashboard__sorting {
+    margin-bottom: 60px;
+}
+
+.dashboard__sorting ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.dashboard__sorting ul li {
+    padding: 15px 30px;
+    margin: 0 30px;
+    cursor: pointer;
+    background-color: brown;
+}
+
+.dashboard__sorting ul li.active {
+    background-color: blue;
+}
+
+.no-questions {
+    text-align: center;
+}
