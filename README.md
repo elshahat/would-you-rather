@@ -1,70 +1,134 @@
-# Getting Started with Create React App
+# Would You Rather Game
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project created for the Udacity React Nanodegree Program.
 
-## Available Scripts
+## Table of Contents
 
-In the project directory, you can run:
+* [Project Summary](#project-summary)
+* [Installation](#installation)
+* [App Structure](#app-structure)
+* [Backend Server](#backend-server)
 
-### `yarn start`
+## Project Summary
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+In the **Would You Rather** Project, students had to build a web app that lets a user play the “Would You Rather?” game. The game goes like this: A user is asked a question in the form: “Would you rather [option A] or [option B] ?”. Answering "neither" or "both" is against the rules.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+For the **Would You Rather** App, we were given [a starter code](https://github.com/udacity/reactnd-project-would-you-rather-starter) - which consists only of **The _DATA.js** file, which represents a fake database and methods that let us access the app data.
 
-### `yarn test`
+The app is using React and Redux with react-redux, react-redux-loading, react-router-dom, redux-thunk packages. The complete list of dependencies can be found in the **package.json** file.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Installation
+1. Clone repository using:
 
-### `yarn build`
+   `git clone https://github.com/elshahat/would-you-rather`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+2.  Install all dependencies:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+    `npm install`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+3. Run application:
 
-### `yarn eject`
+   `npm start`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+4. After running npm start, the React App should open automatically in your browser. If it doesn't, open `localhost:3000` in your browser.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## App Structure
+```bash
+├── package.json
+├── package-lock.json
+├── README.md
+├── yarn.lock
+├── public
+│   ├── favicon.png
+│   ├── index.html
+│   └── robots.txt
+└── src
+    ├── assets
+    │   │── css
+    │   │   │── dashboard.css
+    │   │   │── layout.css
+    │   │   │── leader-board.css
+    │   │   │── login.css
+    │   │   │── new-question.css
+    │   │   └── question-card.css
+    │   └── images
+    │       │── john.jpg
+    │       │── sarah.jpg
+    │       │── tyler.jpg
+    │       └── would-you-rather.png
+    ├── components
+    │   ├── AnswerQuestion.js
+    │   ├── Dashboard.js
+    │   ├── LeaderBoard.js
+    │   ├── Login.js
+    │   ├── NewQuestion.js
+    │   ├── PageNotFound.js
+    │   ├── Question.js
+    │   ├── QuestionCard.js
+    │   │── ResultCard.js
+    │   └── shared
+    │       │── Header.css
+    │       │── Header.js
+    │       │── Nav.js
+    │       └── User.js
+    ├── redux
+    │   │── actions
+    │   │   │── authedUser.js
+    │   │   │── questions.js
+    │   │   │── shared.js
+    │   │   └── users.js
+    │   │── middlewares
+    │   │   │── index.js
+    │   │   └── logger.js
+    │   │── reducers
+    │   │   │── authedUser.js
+    │   │   │── index.js
+    │   │   │── questions.js
+    │   │   └── users.js
+    │   └── store.js
+    ├── utils
+    │   ├── _DATA.js
+    │   └── api.js
+    ├── App.js
+    └── index.js
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Backend Server
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+This file is provided by Udacity [`_DATA.js`](src/utils/_DATA.js) contains the methods needed to perform necessary operations on the backend:
 
-## Learn More
+* `_getUsers()`
+* `_getQuestions()`
+* `_saveQuestion(question)`
+* `_saveQuestionAnswer(object)`
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+**_getUsers() Method**
+Description: Get all of the existing users from the database.
+Return Value: Object where the key is the user’s id and the value is the user object.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+**_getQuestions() Method**
+Description: Get all of the existing questions from the database.
+Return Value: Object where the key is the question’s id and the value is the question object.
 
-### Code Splitting
+**_saveQuestion(question) Method**
+Description: Save the polling question in the database.
+Parameters: Object that includes the following properties: author, optionOneText, and optionTwoText. More details about these properties:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+* author - String - The id of the user who posted the question
+* optionOneText - String- The text of the first option
+* optionTwoText - String- The text of the second option
 
-### Analyzing the Bundle Size
+Return Value: An object that has the following properties: id, author, optionOne, optionTwo, timestamp. More details about these properties:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+* id - String - The id of the question that was posted
+* author - String - The id of the user who posted the question
+* optionOne - Object - The object has a text property and a votes property, which stores an array of the ids of the users who voted for that option
+* optionTwo - Object - The object has a text property and a votes property, which stores an array of the ids of the users who voted for that option
+* timestamp - String - The time when the question was created
 
-### Making a Progressive Web App
+**_saveQuestionAnswer(object) Method**
+Description: Save the answer to a particular polling question in the database. Parameters: Object that contains the following properties: authedUser, qid, and answer. More details about these properties:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+* authedUser - String - The id of the user who answered the question
+* qid - String - The id of the question that was answered
+* answer - String - The option the user selected. The value should be either "optionOne" or "optionTwo"
